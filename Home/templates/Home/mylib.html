@@ -1,0 +1,22 @@
+
+{% extends 'Home/base.html' %}
+{% load crispy_forms_tags %}
+<html lang="en">
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>IMG COMPRESSOR</title>
+</head>
+
+<body >
+img compressor
+{% for item in mylib %}
+<div class="container">
+<h1>item{{ item.quality }}</h1>
+<img src="{{ item.im.url }}" width="300px" height="400px" >
+    </div>
+{% endfor %}
+
+</body>
+{% endblock %}
+</html>

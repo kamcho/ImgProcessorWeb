@@ -1,0 +1,28 @@
+{% extends 'Users/base.html' %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+{% block content %}
+
+<div class="container">
+  <div class="form-group">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+         
+        {{ form|crispy }}
+        <br>
+
+    <button class="btn btn-primary" >update</button>
+    </form>
+
+  </div>
+
+</div>
+{% endblock %}
+</body>
+</html>
+
+

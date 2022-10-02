@@ -1,0 +1,141 @@
+{% extends 'Users/base.html' %}
+{% load static %}
+{% block content %}
+
+
+  
+   <div class="maain">
+     <section class="user">
+       <span></span>
+         <img  class="image" src="{{ user.profile.pic.url }}" >
+         <h4>{{ user.username }}</h4>
+         <div class="button">
+          <button class="btn btn-primary"  type="submit"><a href="{% url 'about'  %}" style="color: white;">About</a></button>
+        <button class="btn btn-primary" href="{% url 'post'  %}" type="submit"><a href="{% url 'update-profile' user.profile.id %}" style="color: white;">Edit</a></button>
+        
+     </div>
+          
+          </span>
+          
+          
+     </section>
+     <div class="respond">
+       <a>
+      <button class="btn btn-primary" href="{% url 'post'  %}" type="">Activity</button></a>
+      <button class="btn btn-primary" href="{% url 'post'  %}" type="submit">Feeling</button>
+     </div> <hr/>
+     
+     <div>
+       <ul class="pnavbar" style="text-decoration: none;color: black;">
+         <a href="{% url 'post'  %}" style="text-decoration: none;color: black;"><li style="list-style: none;color: black;">Posts</li></a>
+         <a href="{% url 'about'  %}" style="text-decoration: none;color: black;"><li style="list-style: none;color: black;">About</li></a>
+         <a href="{% url 'home'  %}" style="text-decoration: none;color: black;"><li style="list-style: none;color: black;">Home</li></a>
+         <a href="{% url 'logout'  %}" style="text-decoration: none;color: black;"><li style="list-style: none;color: black;">Logout</li></a>
+        
+       </ul>
+     </div>
+     </div>
+    
+     
+     
+    
+
+    
+   </div>
+   <a href="{% url 'post'  %}" id="hack">
+    <div class="profilehack"  >
+      <img src="{{ user.profile.pic.url }}">
+      <input type="text" placeholder="what's on your mind?"><hr/>
+      <div style="justify-content: center;" class="lbuttons">
+       
+       
+        <button class="btn btn-primary" href="{% url 'post'  %}" type="submit">Photo</button>
+        <button class="btn btn-primary" href="{% url 'post'  %}" type="submit">Feeling</button>
+        <button class="btn btn-primary" href="{% url 'post'  %}" type="submit">Activity</button>
+
+      </div>
+    </div>
+  </a>
+   <div class="views">
+     <div>
+       <a  href="{% url 'about'  %}" style="color: rgb(0, 0, 0);text-decoration: none;">
+      <div class="about">
+        <h4 style="text-align: center;padding-top: 10px;">about</h4>
+        {% if user.about.music %}
+        <h6 style="padding-left: 30px;">Fav team:{{ user.about.team }}</h6>
+        <h6 style="padding-left: 30px;">Fav genre:{{ user.about.music }}</h6>
+        <!-- <h6 style="padding-left: 30px;">Preffered {{ user.about.religion }}</h6> -->
+        <h6 style="padding-left: 30px;">fav hobby{{ user.about.hobby }}</h6>
+        {% else %}
+        <h6 class="alert alert-info">You do not have aboout info!Add</h6>
+          {% endif %}
+      </div>
+    </a>
+      <div class="photos">
+        <div class="photo">
+        <h5 style="padding-left: 7px;">Photos</h5>
+     
+        </div>
+        
+        {% for post in user_posts %}
+    
+      
+                <img src="{{ post.pic.url }}" style="display:inline;width:70px;height:70px;padding-top: 10px;">
+          
+            
+  
+  
+      {% endfor %}
+
+        
+       
+     </div>
+     
+    
+      
+        
+     </div>
+     <div style="padding-left: 30px;">
+      <a href="{% url 'post'  %}">
+        <div class="profilePost" >
+          <img src="{{ user.profile.pic.url }}">
+          <input type="text" placeholder="what's on your mind?"><hr/>
+          <div style="justify-content: center;width: 100%;" class="lbuttons">
+           
+           
+            <button class="btn btn-primary" href="{% url 'post'  %}" type="submit">Photo</button>
+            <button class="btn btn-primary" href="{% url 'post'  %}" type="submit">Feeling</button>
+            <button class="btn btn-primary" href="{% url 'post'  %}" type="submit">Activity</button>
+    
+          </div>
+        </div>
+      </a>
+      {% for post in user_posts %}
+    
+      <div class="userpost" >
+            <div class="">
+              <img src="{{ user.profile.pic.url }}" style="border-radius:80px ;">
+              <p style="padding-left: 10px;margin-top: 15px;width: 40%;"><small>{{ post.date|date:"D M Y" }}</small></p>
+              <h5 style="color:rgb(0, 0, 0);width: 60%;margin-top: 15px;" class="card-title">  {{ post.author }}</h5>
+            </div>
+            <posts >
+              <p style="padding-left: 3px;padding-top: 10px;" class="card-text">{{ post.content }}</p>
+              <pic>
+                <img src="{{ post.pic.url }}" style="padding-bottom: 5px;">
+               
+              </pic>
+            </posts>
+            
+  </div>
+  
+      {% endfor %}
+     </div>
+        
+        
+   </div>
+   </div>
+ 
+   
+{% endblock %}
+</body>
+</html>

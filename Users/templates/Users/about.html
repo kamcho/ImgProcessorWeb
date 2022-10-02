@@ -1,0 +1,33 @@
+{% extends 'Users/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+  <h3>About Me</h3>
+  {% if user.about.music %}
+  <div class="form-group" style="padding-top: 60px;">
+    
+    <input style="width: 60%;height:35px;border-color: aqua;border-width: 3px;padding-left: 20px;" value="{{ user.about.music }}" focused><br><br>
+    <input style="width: 60%;height:35px;border-color: aqua;border-width: 3px;padding-left: 20px;" placeholder="{{ user.about.team }}"><br><br>
+    <input style="width: 60%;height:35px;border-color: aqua;border-width: 3px;padding-left: 20px;" placeholder="{{ user.about.hobby }}"><br><br>
+    <input style="width: 60%;height:35px;border-color: aqua;border-width: 3px;padding-left: 20px;" placeholder="{{ user.about.religion }}"><br><br>
+    <button class="btn btn-primary"  type="submit"><a href="{% url 'update-about' user.about.id  %}" style="color: white;">Edit</a></button>
+
+  {% else %}
+  <h6 class="alert alert-info">You do not have aboout info!Add</h6>
+  <button class="btn btn-primary"  type="submit"><a href="{% url 'update-about' user.about.id  %}" style="color: white;">Add</a></button>
+
+{% endif %}
+
+    
+    <!-- <h5>{{ user.about.music }}</h5> -->
+
+</div>
+{% endblock %}
+</body>
+</html>
+
+
+
+
+

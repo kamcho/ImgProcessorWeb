@@ -1,0 +1,90 @@
+{% extends 'Users/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="main" style="height: 500px;"></div>
+<div class="continer" style="align-items: center;justify-content: center;">
+  {% if user.is_authenticated %}
+  {% if user.is_staff   %}
+  <a href="{% url 'admin-post'  %}" style="align-items: center;">
+    <div class="homePost" >
+      <img src="{{ user.profile.pic.url }}">
+      <input type="text" placeholder="what's on your mind?"><hr/>
+      <div style="justify-content: center;" class="lbuttons">
+        <!-- <a class="btn btn-primary" href="{% url 'post'  %}"  style="width: 10%;" role="button">Live</a>
+        <a class="btn btn-primary" href="{% url 'post'  %}"  role="button">Video/Image</a>
+        <a class="btn btn-primary" href="{% url 'post'  %}"  role="button">Activity/Feeling</a> -->
+       
+        <button class="btn btn-primary" href="{% url 'post'  %}" type="submit">Image</button>
+        <button class="btn btn-primary" href="{% url 'post'  %}" type="submit">Activity</button>
+        <button class="btn btn-primary" href="{% url 'post'  %}" type="submit">Feeling</button>
+
+      </div>
+    </div>
+  </a>
+
+  {% else %}
+  <a href="{% url 'post'  %}" style="align-items: center;">
+    <div class="homePost" >
+      <img src="{{ user.profile.pic.url }}">
+      <input type="text" placeholder="what's on your mind?"><hr/>
+      <div style="justify-content: center;" class="lbuttons">
+        <!-- <a class="btn btn-primary" href="{% url 'post'  %}"  style="width: 10%;" role="button">Live</a>
+        <a class="btn btn-primary" href="{% url 'post'  %}"  role="button">Video/Image</a>
+        <a class="btn btn-primary" href="{% url 'post'  %}"  role="button">Activity/Feeling</a> -->
+       
+        <button class="btn btn-primary" href="{% url 'post'  %}" type="submit">Image</button>
+        <button class="btn btn-primary" href="{% url 'post'  %}" type="submit">Activity</button>
+        <button class="btn btn-primary" href="{% url 'post'  %}" type="submit">Feeling</button>
+
+      </div>
+    </div>
+  </a>
+
+  {% endif %}
+  
+  {% else %}
+  <div class="text-ceneter" style="padding-top: 30px;"><h4 class="alert alert-info" style="text-align: center;"> <a href="{% url 'login' %}" style="text-decoration: none;color: black;">Login To Create Posts</a> </h4></div>
+  
+  {% endif %}
+  
+  <display>
+    <div class="homeviews">
+      {% for post in adminposts  %}
+      <a href="{% url 'site-postid' post.id %}" style="text-decoration: none;color: black;">
+      <div class="homecards">
+        
+        
+        <img style="width: 10;" src="{{ post.pic.url }}">
+        <content>
+          <div>
+            <p><small>{{ post.date|date:"D M Y" }}</small></p>
+            <h6 >{{ post.title }}</h6>
+            <p style="padding-left: 5px;">{{ post.content }}</p>
+          </div>
+        </content>
+
+      </div>
+    </a>
+      {% endfor %}
+      
+
+    </div>
+  </display>
+  
+    
+
+
+
+
+  
+
+</div>
+{% endblock %}
+</body>
+</html>
+
+
+
+
+
